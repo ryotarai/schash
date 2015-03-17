@@ -18,13 +18,53 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install schash
-
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+validator = Schash::Validator.new do
+  {
+    nginx: {
+      user: string, # required field
+      worker_processes: optional(integer), # optional field
+      sites: array_of({
+        server_name: string,
+        root: string,
+        allowed_ips: array_of(string),
+      }),
+    },
+  }
+end
+
+# valid example
+valid = {
+  nginx: {
+    user: "www-data",
+    worker_processes: 4,
+    sites: [{
+      server_name: "example.com",
+      root: "/var/www/itamae",
+      allowed_ips: ["127.0.0.1/32"],
+    }],
+  },
+}
+
+validator.validate(valid) # => []
+
+# invalid example
+invalid = {
+  nginx: {
+    user: 123,
+    sites: {
+      server_name: "example.com",
+      root: "/var/www/itamae",
+      allowed_ips: ["127.0.0.1/32"],
+    },
+  },
+}
+
+validator.validate(invalid)
+# => [#<struct Schash::Schema::Error position=["nginx", "user"], message="is not String">, #<struct Schash::Schema::Error position=["nginx", "sites"], message="is not an array">]
+```
 
 ## Development
 
