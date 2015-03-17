@@ -1,3 +1,5 @@
+require "schash/schema"
+require "schash/validator"
 require "schash/version"
 
 module Schash
