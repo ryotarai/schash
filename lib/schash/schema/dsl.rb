@@ -24,6 +24,22 @@ module Schash
       def numeric
         type(Numeric)
       end
+
+      def integer
+        type(Integer)
+      end
+
+      def float
+        type(Float)
+      end
+
+      def symbol
+        type(Symbol)
+      end
+
+      def array
+        type(Array)
+      end
     end
   end
 end
