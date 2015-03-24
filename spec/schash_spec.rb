@@ -19,7 +19,9 @@ describe Schash::Validator do
           },
           array_of_hash: array_of({
             required_missing: string,
-          })
+          }),
+          boolean: boolean,
+          not_boolean: boolean,
         }
       }
     end
@@ -41,6 +43,8 @@ describe Schash::Validator do
             hash: {
             },
             array_of_hash: [{}],
+            boolean: true,
+            not_boolean: "string",
           },
         })
 
@@ -76,6 +80,10 @@ describe Schash::Validator do
           [
             ["data", "array_of_hash", 0, "required_missing"],
             "is required but missing",
+          ],
+          [
+            ["data", "not_boolean"],
+            "is not any of TrueClass, FalseClass",
           ],
         ]
 

@@ -9,6 +9,10 @@ module Schash
         Rule::ArrayOf.new(schema)
       end
 
+      def one_of_types(*schemas)
+        Rule::OneOfTypes.new(*schemas)
+      end
+
       def type(klass)
         Rule::Type.new(klass)
       end
@@ -39,6 +43,10 @@ module Schash
 
       def array
         type(Array)
+      end
+
+      def boolean
+        one_of_types(TrueClass, FalseClass)
       end
     end
   end
