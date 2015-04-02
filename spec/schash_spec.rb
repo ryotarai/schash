@@ -22,6 +22,8 @@ describe Schash::Validator do
           }),
           boolean: boolean,
           not_boolean: boolean,
+          match: match(/^pattern$/),
+          not_match: match(/^pattern$/)
         }
       }
     end
@@ -45,6 +47,8 @@ describe Schash::Validator do
             array_of_hash: [{}],
             boolean: true,
             not_boolean: "string",
+            match: "pattern",
+            not_match: "not match pattern"
           },
         })
 
@@ -85,6 +89,10 @@ describe Schash::Validator do
             ["data", "not_boolean"],
             "is not any of TrueClass, FalseClass",
           ],
+          [
+            ["data", "not_match"],
+            "does not match /^pattern$/",
+          ]
         ]
 
         expect(errors.size).to eq(expected.size)
