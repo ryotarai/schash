@@ -48,6 +48,10 @@ module Schash
       def boolean
         one_of_types(TrueClass, FalseClass)
       end
+
+      def match(pattern)
+        Rule::Match.new(pattern)
+      end
     end
   end
 end

@@ -4,4 +4,5 @@ require 'schash/schema/rule/one_of_types'
 require 'schash/schema/rule/hash'
 require 'schash/schema/rule/optional'
 require 'schash/schema/rule/type'
+require 'schash/schema/rule/match'
 
