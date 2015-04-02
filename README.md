@@ -29,6 +29,7 @@ validator = Schash::Validator.new do
         root: string,
         allowed_ips: array_of(string),
       }),
+      listen: match(/^(80|443)$/),
     },
   }
 end
@@ -43,6 +44,7 @@ valid = {
       root: "/var/www/itamae",
       allowed_ips: ["127.0.0.1/32"],
     }],
+    listen: "80"
   },
 }
 
@@ -57,11 +59,12 @@ invalid = {
       root: "/var/www/itamae",
       allowed_ips: ["127.0.0.1/32"],
     },
+    listen: "8080"
   },
 }
 
 validator.validate(invalid)
-# => [#<struct Schash::Schema::Error position=["nginx", "user"], message="is not String">, #<struct Schash::Schema::Error position=["nginx", "sites"], message="is not an array">]
+# => [#<struct Schash::Schema::Error position=["nginx", "user"], message="is not String">, #<struct Schash::Schema::Error position=["nginx", "sites"], message="is not an array">, #<struct Schash::Schema::Error position=["nginx", "listen"], message="does not match /^(80|443)$/">]
 ```
 
 ## Development
