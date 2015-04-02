@@ -9,7 +9,7 @@ module Schash
         def validate(target, position = [])
           errors = []
 
-          unless target.match(@pattern)
+          unless @pattern.match(target)
             errors << Error.new(position, "does not match #{@pattern.inspect}")
           end
 
