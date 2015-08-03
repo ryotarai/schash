@@ -1,4 +1,4 @@
-# Schash
+# Schash [![Build Status](https://travis-ci.org/ryotarai/schash.svg?branch=master)](https://travis-ci.org/ryotarai/schash)
 
 Pronounciation: the same as "squash"
 
