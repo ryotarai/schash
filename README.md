@@ -1,6 +1,6 @@
 # Schash [![Build Status](https://travis-ci.org/ryotarai/schash.svg?branch=master)](https://travis-ci.org/ryotarai/schash) [![Gem Version](https://badge.fury.io/rb/schash.svg)](http://badge.fury.io/rb/schash)
 
-Pronounciation: the same as "squash"
+Pronunciation: the same as "squash"
 
 Ruby hash validator
 
