@@ -4,8 +4,8 @@ module Schash
       @validator = Schema::Rule::Hash.new(Schema::DSL.evaluate(&schema_block))
     end
 
-    def validate(target)
-      @validator.validate(target)
+    def validate(target, strict: false)
+      @validator.validate(target, strict: strict)
     end
   end
 end

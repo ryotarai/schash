@@ -6,7 +6,7 @@ module Schash
           @klass = klass
         end
 
-        def validate(target, position = [])
+        def validate(target, position = [], strict: false)
           errors = []
 
           unless target.is_a?(@klass)

@@ -6,7 +6,7 @@ module Schash
           @pattern = pattern
         end
 
-        def validate(target, position = [])
+        def validate(target, position = [], strict: false)
           errors = []
 
           unless @pattern.match(target)

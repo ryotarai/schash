@@ -6,8 +6,8 @@ module Schash
           @rule = rule
         end
 
-        def validate(target, position = [])
-          @rule.validate(target, position)
+        def validate(target, position = [], strict: false)
+          @rule.validate(target, position, strict: strict)
         end
 
         def optional?

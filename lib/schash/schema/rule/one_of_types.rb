@@ -6,7 +6,7 @@ module Schash
           @klasses = klasses
         end
 
-        def validate(target, position = [])
+        def validate(target, position = [], strict: false)
           match = @klasses.any? do |klass|
             target.is_a?(klass)
           end

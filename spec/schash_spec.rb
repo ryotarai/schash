@@ -102,5 +102,104 @@ describe Schash::Validator do
         end
       end
     end
+    context "with valid data" do
+      it "returns no errors" do
+        errors = subject.validate({
+          data: {
+            string: "string",
+            not_string: "string",
+            words: [ "string" ],
+            not_array: [ "string" ],
+            required_missing: "string",
+            numeric: 1,
+            not_numeric: 1,
+            hash: {
+              required_missing: "string"
+            },
+            array_of_hash: [{required_missing: "string"}],
+            boolean: true,
+            not_boolean: true,
+            match: "pattern",
+            not_match: "pattern"
+          },
+        })
+
+        expected = []
+
+        expect(errors.size).to eq(expected.size)
+        errors.each_with_index do |error, i|
+          expect(error.position).to eq(expected[i][0])
+          expect(error.message).to  eq(expected[i][1])
+        end
+      end
+    end
+    context "with not strictly valid data and strict validation" do
+      it "returns errors" do
+        errors = subject.validate({
+          data: {
+            unexpected: "string",
+            string: "string",
+            not_string: "string",
+            words: [ "string" ],
+            not_array: [ "string" ],
+            required_missing: "string",
+            numeric: 1,
+            not_numeric: 1,
+            hash: {
+              required_missing: "string"
+            },
+            array_of_hash: [{required_missing: "string"}],
+            boolean: true,
+            not_boolean: true,
+            match: "pattern",
+            not_match: "pattern"
+          },
+        }, strict: true)
+
+        expected = [
+          [
+            ["data", "unexpected"],
+            "is not in schema",
+          ],
+        ]
+
+        expect(errors.size).to eq(expected.size)
+        errors.each_with_index do |error, i|
+          expect(error.position).to eq(expected[i][0])
+          expect(error.message).to  eq(expected[i][1])
+        end
+      end
+    end
+    context "with stricly valid data and strict validation" do
+      it "returns no errors" do
+        errors = subject.validate({
+          data: {
+            string: "string",
+            not_string: "string",
+            words: [ "string" ],
+            not_array: [ "string" ],
+            required_missing: "string",
+            numeric: 1,
+            not_numeric: 1,
+            hash: {
+              required_missing: "string"
+            },
+            array_of_hash: [{required_missing: "string"}],
+            boolean: true,
+            not_boolean: true,
+            match: "pattern",
+            not_match: "pattern"
+          },
+        }, strict: true)
+
+        expected = []
+
+        expect(errors.size).to eq(expected.size)
+        errors.each_with_index do |error, i|
+          expect(error.position).to eq(expected[i][0])
+          expect(error.message).to  eq(expected[i][1])
+        end
+      end
+    end
   end
 end
