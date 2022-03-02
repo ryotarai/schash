@@ -10,7 +10,7 @@ module Schash
                   end
         end
 
-        def validate(target, position = [])
+        def validate(target, position = [], strict: false)
           errors = []
 
           unless target.is_a?(Array)
@@ -19,7 +19,7 @@ module Schash
           end
 
           errors += target.each_with_index.map do |t, i|
-            @rule.validate(t, position + [i])
+            @rule.validate(t, position + [i], strict: strict)
           end.flatten
 
           errors

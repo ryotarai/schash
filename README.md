@@ -67,6 +67,8 @@ validator.validate(invalid)
 # => [#<struct Schash::Schema::Error position=["nginx", "user"], message="is not String">, #<struct Schash::Schema::Error position=["nginx", "sites"], message="is not an array">, #<struct Schash::Schema::Error position=["nginx", "listen"], message="does not match /^(80|443)$/">]
 ```
 
+Validate may take an additional ```strict: true``` keyword argument (default is ```false```). In strict mode, entries in hashes which are not part of the schema will be considered as errors.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
