@@ -17,8 +17,8 @@ module Schash
         Rule::Type.new(klass)
       end
 
-      def optional(rule)
-        Rule::Optional.new(rule)
+      def optional(schema)
+        Rule::Optional.new(schema)
       end
 
       def string
